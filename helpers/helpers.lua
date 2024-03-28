@@ -133,6 +133,10 @@ helpers.table.some = function(t, callback)
     return false
 end
 
+helpers.math.lerp = function(from, to, time)
+    return from + (to - from) * time
+end
+
 helpers.math.remap = function(value, low1, high1, low2, high2)
     return low2 + (value - low1) * (high2 - low2) / (high1 - low1)
 end

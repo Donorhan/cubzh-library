@@ -50,6 +50,9 @@ Removes a key-value pair from the table, if the key exists.
 Checks if at least one element in the table satisfies the condition specified by the callback function.
 
 ### Math
+`helpers.math.lerp(from, to, time)`
+Linear interpolation between two values
+
 `helpers.math.remap(value, low1, high1, low2, high2)`
 Remaps a value from one range to another using linear interpolation.
 
