@@ -1,4 +1,10 @@
 local tagger = {}
+
+-- Formatted like that
+-- {
+--   "tag1": ["object1", "object2"],
+--   "tag2": ["object3"], 
+-- }
 tagger.tags = {}
 
 local findTableIndex = function(t, v)
