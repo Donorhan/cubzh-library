@@ -1,6 +1,6 @@
 local helpers = {
-    color = {},
     math = {},
+    table = {},
     shape = {},
 }
 
