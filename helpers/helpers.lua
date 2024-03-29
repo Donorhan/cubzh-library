@@ -160,6 +160,8 @@ helpers.math.repeatValue = function(value, length)
 end
 
 helpers.shape.easeColorLinear = function(shape, startColor, color, duration, paletteIndexes)
+    local ease = require("ease")
+
     if shape.easeColor then
         ease:cancel(shape.easeColor)
     end
