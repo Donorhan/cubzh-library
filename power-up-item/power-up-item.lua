@@ -58,13 +58,13 @@ powerUpItem.create = function(config)
         end
 
         if config.onCollectedEffect then
-            config.onCollectedEffect(other, powerUpContainer)
+            config.onCollectedEffect(powerUpContainer, other)
         else
             defaultCollectEffect(powerUpContainer, config.color)
         end
 
         if config.onCollected then
-            config.onCollected(other, powerUpContainer)
+            config.onCollected(powerUpContainer, other)
         end
     end
 
