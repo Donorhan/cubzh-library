@@ -50,11 +50,24 @@ Removes a key-value pair from the table, if the key exists.
 Checks if at least one element in the table satisfies the condition specified by the callback function.
 
 ### Math
+`helpers.math.clamp(value, min, max)`
+Clamp a value between min and max included.
+
 `helpers.math.lerp(from, to, time)`
 Linear interpolation between two values
+
+`helpers.math.pingPong(value, length)`
+The value will alternate between "value" and "length" progressively.
+
+`helpers.math.repeatValue(value, length)`
+The value will go to "length" and then return directly to 0.
 
 `helpers.math.remap(value, low1, high1, low2, high2)`
 Remaps a value from one range to another using linear interpolation.
 
 `helpers.math.round(value)`
 Round a number to its nearest higher or lower value.
+
+### Shape
+`helpers.shape.easeColorLinear = function(shape, startColor, color, duration, paletteIndexes = { 1 })`
+Gradually animates the color of a shape

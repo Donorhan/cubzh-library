@@ -1,6 +1,7 @@
 local helpers = {
+    color = {},
+    shape = {},
     table = {},
-    math = {},
 }
 
 helpers.table.display = function(map, customDisplay)
@@ -133,6 +134,10 @@ helpers.table.some = function(t, callback)
     return false
 end
 
+helpers.math.clamp = function(value, min, max)
+    return math.min(math.max(value, min), max)
+end
+
 helpers.math.lerp = function(from, to, time)
     return from + (to - from) * time
 end
@@ -143,6 +148,33 @@ end
 
 helpers.math.round = function(value)
     return math.floor(value + 0.5)
+end
+
+helpers.math.pingPong = function(value, length)
+    local mod = value % (length * 2)
+    return length - math.abs(mod - length)
+end
+
+helpers.math.repeatValue = function(value, length)
+    return value % length
+end
+
+helpers.shape.easeColorLinear = function(shape, startColor, color, duration, paletteIndexes)
+    if shape.easeColor then
+        ease:cancel(shape.easeColor)
+    end
+
+    local conf = {
+        onUpdate = function(obj)
+            for _, index in ipairs(paletteIndexes or { 1 }) do
+                shape.Palette[index].Color:Lerp(startColor, color, obj.easeLerp)
+            end
+        end
+    }
+
+    shape.easeLerp = 0.0
+    shape.easeColor = ease:linear(shape, duration, conf)
+    shape.easeColor.easeLerp = 1.0
 end
 
 return helpers
