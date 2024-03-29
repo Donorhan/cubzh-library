@@ -13,6 +13,7 @@ local lerp = function(from, to, time)
 end
 
 local defaultCollectAnimation = function(container, color)
+    local particles = require("particles")
     local emitter = particles:newEmitter({
         life = function()
             return 1
@@ -78,6 +79,7 @@ powerUpItem.create = function(config)
         collisionArea.animTime = collisionArea.animTime + (dt / 200.0)
     end
 
+    local ease = require("ease")
     mainContainer.anim = function()
         ease:inOutSine(mainContainer, 0.2, {
             onDone = function()
