@@ -12,7 +12,7 @@ local lerp = function(from, to, time)
     return from + (to - from) * time
 end
 
-local defaultCollectAnimation = function(container, color)
+local defaultCollectEffect = function(container, color)
     local particles = require("particles")
     local emitter = particles:newEmitter({
         life = function()
@@ -30,6 +30,9 @@ local defaultCollectAnimation = function(container, color)
     })
     container:AddChild(emitter)
     emitter:spawn(20)
+
+    local sfx = require("sfx")
+    sfx("whooshes_small_2", { Position = container.Position, Volume = 0.75 })
 end
 
 powerUpItem.create = function(config)
@@ -57,8 +60,7 @@ powerUpItem.create = function(config)
         if config.onCollectedEffect then
             config.onCollectedEffect(other, powerUpContainer)
         else
-            defaultCollectAnimation(powerUpContainer, config.color)
-            sfx("whooshes_small_2", { Position = powerUpContainer.Position, Volume = 0.75 })
+            defaultCollectEffect(powerUpContainer, config.color)
         end
 
         if config.onCollected then
