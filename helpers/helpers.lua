@@ -1,7 +1,7 @@
 local helpers = {
     color = {},
+    math = {},
     shape = {},
-    table = {},
 }
 
 helpers.table.display = function(map, customDisplay)
