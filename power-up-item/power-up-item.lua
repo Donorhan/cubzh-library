@@ -2,7 +2,6 @@ local powerUpItem = {
     defaultConfig = {
         color = Color(220, 220, 255, 140),
         model = nil,
-        modelScale = Number3(1, 1, 1),
         onCollected = nil,
         onCollectedEffect = nil,
     },
@@ -70,7 +69,8 @@ powerUpItem.create = function(config)
 
     local shape = Shape(config.model)
     mainContainer:AddChild(shape)
-    shape.Scale = config.modelScale or powerUpItem.defaultConfig.modelScale
+    shape.LocalScale = config.modelScale or Number3.One
+    shape.LocalPosition = config.modelPosition or Number3.One
     shape.Physics = PhysicsMode.Disabled
 
     -- animations
