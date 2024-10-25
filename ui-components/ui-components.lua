@@ -29,9 +29,10 @@ uiComponents.countDownAnimated = function(position, onCountdownDone)
 	local as = AudioSource()
 	as.Sound = "laser_gun_shot_1"
 	as:SetParent(Player.Head)
-
+	as.Volume = 0.7
 	as.Pitch = 1.8
 	as:Play()
+
 	animateCountdown(text, textCopy, Color.Red, "3", function()
 		as:Play()
 		animateCountdown(text, textCopy, Color.Green, "2", function()
