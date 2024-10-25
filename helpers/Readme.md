@@ -23,13 +23,10 @@ Creates a new table containing only the elements from the original table for whi
 Executes a callback function for each element in the table.
 
 `helpers.table.get(table, key, default)`
-Retrieves an element from the array; if the value does not exist, returns the default value given in parameter
+Retrieves an element from the array; if the value does not exist, returns the default value given in parameter.
 
 `helpers.table.keys(table)`
-Retrieves all the keys of a table
-
-`helpers.table.length(table)`
-Returns the number of elements in the table.
+Retrieves all the keys of a table.
 
 `helpers.table.map(table, callback)`
 Modifies each element in the table using the provided callback function.

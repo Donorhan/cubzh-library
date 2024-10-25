@@ -1,8 +1,19 @@
+local ease = require("ease")
+
 local helpers = {
     math = {},
     table = {},
     shape = {},
 }
+
+helpers.table.copy = function(t)
+    local copy = {}
+    for index, value in pairs(t) do
+        copy[index] = value
+    end
+
+    return setmetatable(copy, getmetatable(t))
+end
 
 helpers.table.display = function(map, customDisplay)
     if not customDisplay then
@@ -73,15 +84,6 @@ helpers.table.keys = function(t)
     end
 
     return keys
-end
-
-helpers.table.length = function(t)
-    local count = 0
-    for _ in pairs(t) do
-        count = count + 1
-    end
-
-    return count
 end
 
 helpers.table.map = function(t, callback)
@@ -160,8 +162,6 @@ helpers.math.repeatValue = function(value, length)
 end
 
 helpers.shape.easeColorLinear = function(shape, startColor, color, duration, paletteIndexes)
-    local ease = require("ease")
-
     if shape.easeColor then
         ease:cancel(shape.easeColor)
     end
