@@ -21,6 +21,7 @@ mod.create = function(size, createFunc, autoResize)
         self.available = {}
         self.autoResize = autoResize or false
         self.resizeAmount = math.max(math.floor(size * 0.5), 1)
+        self:init()
 
         return self
     end
