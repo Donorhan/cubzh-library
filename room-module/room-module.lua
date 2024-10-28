@@ -177,6 +177,7 @@ mod.create = function(config)
 
         self.root = Object()
         self.walls = {}
+        self.root.room = self
 
         for _, faceData in ipairs(ALL_FACES) do
             local config = self.config[faceData.name]
@@ -284,6 +285,7 @@ mod.create = function(config)
 
     function room:createWall(face, blocSizeMax, paintColor)
         self.walls[face] = createWall(self, face, blocSizeMax, paintColor)
+        self.walls[face].room = self
     end
 
     function room:createHoleFromBlockCoordinates(face, blockCoordinates, size)
