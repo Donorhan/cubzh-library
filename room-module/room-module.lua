@@ -270,6 +270,7 @@ mod.create = function(config)
 
             local dims = dimensionMap[paintFace]
             wall.paintShape = self:_createShape(wall, dims.X, dims.Y, dims.Z, blocSizeMax, paintColor)
+            wall.paintShape.Physics = PhysicsMode.Disabled
 
             local paintMargin = 0.999
             local scaleX = ((paintFace == Face.Left or paintFace == Face.Right) and self.config.paintSize or 1) * paintMargin
