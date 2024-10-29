@@ -68,3 +68,10 @@ Round a number to its nearest higher or lower value.
 ### Shape
 `helpers.shape.easeColorLinear = function(shape, startColor, color, duration, paletteIndexes = { 1 })`
 Gradually animates the color of a shape
+
+### Colors
+`helpers.colors.RGBToHSL = function(color)`
+Convert an RGB color to an HSL color
+
+`helpers.colors.HSLToRGB = function(h, s, l)`
+Convert an HSL color to a RGB color
