@@ -192,6 +192,30 @@ helpers.shape.easeColorLinear = function(shape, startColor, color, duration, pal
     shape.easeColor.easeLerp = 1.0
 end
 
+helpers.shape.flash = function(shape, color, duration)
+    if shape._flashEffectIsFlashing then
+        return
+    end
+
+    shape._flashEffectIsFlashing = true
+    local originalPalette = shape.Palette:Copy()
+    local conf = {
+        onUpdate = function(obj)
+            for i = 1, #shape.Palette - 1 do
+                shape.Palette[i].Color:Lerp(color, originalPalette[i].Color, obj.easeLerp)
+            end
+        end,
+        onDone = function()
+            shape.Palette = originalPalette
+            shape._flashEffectIsFlashing = false
+        end
+    }
+
+    shape.easeLerp = 0.0
+    shape.easeColor = ease:linear(shape, duration, conf)
+    shape.easeColor.easeLerp = 1.0
+end
+
 
 ----------------
 -- Colors
