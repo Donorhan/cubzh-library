@@ -2,6 +2,8 @@ local hierarchyActions = require("hierarchyactions")
 
 local mod = {}
 
+local sign = function(x) return x > 0 and 1 or (x < 0 and -1 or 0) end
+
 mod.dustify = function(entity, config)
     local stride = config.stride or 4
     local direction = config.direction or Number3.Zero
