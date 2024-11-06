@@ -153,6 +153,11 @@ helpers.math.lerp = function(from, to, time)
     return from + (to - from) * time
 end
 
+helpers.math.pingPong = function(value, length)
+    local mod = value % (length * 2)
+    return length - math.abs(mod - length)
+end
+
 helpers.math.remap = function(value, low1, high1, low2, high2)
     return low2 + (value - low1) * (high2 - low2) / (high1 - low1)
 end
@@ -161,13 +166,12 @@ helpers.math.round = function(value)
     return math.floor(value + 0.5)
 end
 
-helpers.math.pingPong = function(value, length)
-    local mod = value % (length * 2)
-    return length - math.abs(mod - length)
-end
-
 helpers.math.repeatValue = function(value, length)
     return value % length
+end
+
+helpers.math.sign = function(x)
+    return x > 0 and 1 or (x < 0 and -1 or 0)
 end
 
 
