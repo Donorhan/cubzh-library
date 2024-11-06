@@ -174,6 +174,16 @@ helpers.math.sign = function(x)
     return x > 0 and 1 or (x < 0 and -1 or 0)
 end
 
+helpers.math.lookAt = function(a, b)
+    local direction = b - a
+    local yaw = math.atan(direction.X, direction.Z)
+
+    local horizontalDistance = math.sqrt(direction.X * direction.X + direction.Z * direction.Z)
+    local pitch = -math.atan(direction.Y, horizontalDistance)
+
+    return Number3(pitch, yaw, 0)
+end
+
 
 ----------------
 -- Shape
