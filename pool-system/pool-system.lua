@@ -15,24 +15,14 @@ mod.create = function(size, createFunc, autoResize)
 
     function pool.new(size, createFunc, autoResize)
         local self = setmetatable({}, pool)
-        self.size = size
+        self.size = 0
         self.createFunc = createFunc
         self.objects = {}
         self.available = {}
         self.autoResize = autoResize or false
-        self.resizeAmount = math.max(math.floor(size * 0.5), 1)
-        self:init()
+        self:resize(size)
 
         return self
-    end
-
-    function pool:init()
-        for i = 1, self.size do
-            local obj = self.createFunc()
-            obj.poolIndex = i
-            self.objects[i] = obj
-            self.available[i] = true
-        end
     end
 
     function pool:acquire()
