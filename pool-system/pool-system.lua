@@ -31,7 +31,7 @@ mod.create = function(size, createFunc, autoResize)
             local obj = self.createFunc()
             obj.poolIndex = i
             self.objects[i] = obj
-            self.available[i] = i
+            self.available[i] = true
         end
     end
 
@@ -53,7 +53,7 @@ mod.create = function(size, createFunc, autoResize)
             end
         end
 
-        self.available[index] = nil
+        self.available[index] = false
         local obj = self.objects[index]
         obj.poolIndex = index
 
@@ -61,27 +61,24 @@ mod.create = function(size, createFunc, autoResize)
     end
 
     function pool:acquireRandom()
-        local count = 0
-        local selected
-        for k in pairs(self.available) do
-            count = count + 1
-            if math.random(count) == 1 then
-                selected = k
+        local availableIndices = {}
+        for i = 1, self.size do
+            if self.available[i] then
+                table.insert(availableIndices, i)
             end
         end
 
-        if not selected then
-            if self.autoResize then
-                self:resize(self.size + self.resizeAmount)
-                return self:acquire()
-            else
-                return nil
-            end
+        if #availableIndices == 0 then
+            return nil
         end
 
-        self.available[selected] = nil
+        local randomIndex = math.random(#availableIndices)
+        local selected = availableIndices[randomIndex]
+
+        self.available[selected] = false
         local obj = self.objects[selected]
         obj.poolIndex = selected
+
         return obj
     end
 
@@ -108,7 +105,7 @@ mod.create = function(size, createFunc, autoResize)
             local obj = self.createFunc()
             obj.poolIndex = i
             self.objects[i] = obj
-            self.available[i] = i
+            self.available[i] = true
         end
 
         self.size = newSize
