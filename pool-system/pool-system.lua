@@ -60,6 +60,31 @@ mod.create = function(size, createFunc, autoResize)
         return obj
     end
 
+    function pool:acquireRandom()
+        local count = 0
+        local selected
+        for k in pairs(self.available) do
+            count = count + 1
+            if math.random(count) == 1 then
+                selected = k
+            end
+        end
+
+        if not selected then
+            if self.autoResize then
+                self:resize(self.size + self.resizeAmount)
+                return self:acquire()
+            else
+                return nil
+            end
+        end
+
+        self.available[selected] = nil
+        local obj = self.objects[selected]
+        obj.poolIndex = selected
+        return obj
+    end
+
     function pool:release(obj)
         local index = obj.poolIndex
         if not index or not self.objects[index] then
