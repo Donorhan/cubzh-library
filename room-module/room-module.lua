@@ -285,6 +285,11 @@ mod.create = function(config)
     end
 
     function room:createWall(face, blocSizeMax, paintColor)
+        if self.walls[face] then
+            self.walls[face]:RemoveFromParent()
+            self.walls[face] = nil
+        end
+
         self.walls[face] = createWall(self, face, blocSizeMax, paintColor)
         self.walls[face].room = self
     end
