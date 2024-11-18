@@ -218,7 +218,7 @@ helpers.shape.flash = function(shape, color, duration)
 
     local conf = {
         onUpdate = function(obj)
-            for i = 1, #shape.Palette - 1 do
+            for i = 1, #shape.Palette do
                 shape.Palette[i].Color:Lerp(color, shape.originalPalette[i].Color, obj.easeLerp)
             end
         end,
