@@ -11,7 +11,12 @@ mod.create = function(size, createFunc, autoResize)
         self.objects = {}
         self.available = {}
         self.autoResize = autoResize or false
-        self:resize(size)
+
+        if size > 0 then
+            self:resize(size)
+        else
+            self.autoResize = true
+        end
 
         return self
     end
