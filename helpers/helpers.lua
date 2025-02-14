@@ -7,6 +7,10 @@ local helpers = {
     shape = {},
 }
 
+-- compatibility fix as the platform is transitioning to Luau.
+-- With Lua 5.3, math.atan(x,y) takes into account the sign of each argument
+-- With Luau, atan does NOT consider it but math.atan2 does.
+local atan2 = math.atan2 and math.atan2 or math.atan
 
 ----------------
 -- Table
@@ -176,10 +180,10 @@ end
 
 helpers.math.lookAt = function(a, b)
     local direction = b - a
-    local yaw = math.atan(direction.X, direction.Z)
+    local yaw = atan2(direction.X, direction.Z)
 
     local horizontalDistance = math.sqrt(direction.X * direction.X + direction.Z * direction.Z)
-    local pitch = -math.atan(direction.Y, horizontalDistance)
+    local pitch = -atan2(direction.Y, horizontalDistance)
 
     return Number3(pitch, yaw, 0)
 end
