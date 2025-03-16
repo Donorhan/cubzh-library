@@ -49,7 +49,7 @@ mod.dustify = function(entity, config)
 
     local shapeContainer = Object()
     hierarchyActions:applyToDescendants(entity, { includeRoot = true }, function(o)
-        if type(o) == "Shape" or type(o) == "MutableShape" then
+        if typeof(o) == "Shape" or typeof(o) == "MutableShape" then
             local particlesContainer = convertToParticles(o)
             shapeContainer:AddChild(particlesContainer)
         end
